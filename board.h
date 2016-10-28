@@ -1,3 +1,6 @@
+#ifndef BOARD
+#define BOARD
+
 #define BOARD_DIM 3
 
 struct board{
@@ -10,3 +13,5 @@ typedef struct board board;
 void init_board(board boards[], int size);
 
 void display_board(board boards[], int size);
+
+#endif

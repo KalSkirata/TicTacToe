@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -g
 INCLUDES = -I./
-SRCS = ttt.c board.c
+SRCS = ttt.c board.c move.c
 OBJS = $(SRCS:.c=.o)
 MAIN = ttt
 
