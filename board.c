@@ -1,3 +1,4 @@
+#include<stdio.h>
 #include<board.h>
 
 // fill board with "-" character
@@ -14,11 +15,12 @@ void init_board(board boards[], int size){
 }
 
 void win_small_board(board boards[], int size){
-int i,cpt = 0;
+	int i,cpt = 0;
 	for(i=0; i<BOARD_DIM; i++){
-		if ((boards[cpt].b[i][0] =="x" || boards[cpt].b[i][0]== "o") && (boards[cpt].b[i][0]==boards[cpt].b[i][1] && boards[cpt+1].b[i][0]==boards[cpt].b[i][2])){
-			printf("you win"); }
-
+		if ((boards[cpt].b[i][0]=='x' || boards[cpt].b[i][0]=='o') && (boards[cpt].b[i][0]==boards[cpt].b[i][1] && boards[cpt+1].b[i][0]==boards[cpt].b[i][2])){
+			printf("you win");
+		}
+	}
 }
 
 
