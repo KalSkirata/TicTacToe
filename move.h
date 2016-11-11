@@ -9,4 +9,6 @@ typedef struct move move;
 
 int play(move m); //TODO
 
+int unplay(move m); //TODO
+
 void move_available(move previous_move, board boards[], int size);
