@@ -5,6 +5,7 @@
 
 struct board{
 	char b[BOARD_DIM][BOARD_DIM];
+	char player;
 };
 
 typedef struct board board;

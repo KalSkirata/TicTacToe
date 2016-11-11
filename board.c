@@ -14,13 +14,32 @@ void init_board(board boards[], int size){
 	}
 }
 
-void win_small_board(board boards[], int size){
-	int i,cpt = 0;
+void win_small_board(board boards[], int id_board){
+	int i;
+
 	for(i=0; i<BOARD_DIM; i++){
-		if ((boards[cpt].b[i][0]=='x' || boards[cpt].b[i][0]=='o') && (boards[cpt].b[i][0]==boards[cpt].b[i][1] && boards[cpt+1].b[i][0]==boards[cpt].b[i][2])){
-			printf("you win");
-		}
+		if ((boards[id_board].b[i][0]=='x' || boards[id_board].b[i][0]=='o') && (boards[id_board].b[i][0]==boards[id_board].b[i][1] && boards[id_board].b[i][0]==boards[id_board].b[i][2])){
+			boards[id_board].player = boards[id_board].b[i][0];
+			printf("the winner is : %c ", boards[id_board].player );
+
+		}else if ((boards[id_board].b[0][i]=='x' || boards[id_board].b[0][i]=='o') && (boards[id_board].b[0][i]==boards[id_board].b[1][i] && boards[id_board].b[0][i]==boards[id_board].b[2][i])){
+			boards[id_board].player = boards[id_board].b[0][i];
+			printf("the winner is : %c ", boards[id_board].player);
+
+		}else if ((boards[id_board].b[0][0] != '-') && (boards[id_board].b[0][0] == boards[id_board].b[1][1]) && (boards[id_board].b[0][0] == boards[id_board].b[2][2])){
+			boards[id_board].player = boards[id_board].b[0][0];
+			printf("the winner is : %c ", boards[id_board].player);
+		
+		}else if ((boards[id_board].b[2][0] != '-') && (boards[id_board].b[2][0] == boards[id_board].b[1][1]) && (boards[id_board].b[0][0] == boards[id_board].b[0][2]))
+			boards[id_board].player = boards[id_board].b[2][0];
+			printf("the winner is : %c ", boards[id_board].player);
 	}
+}
+
+void win_big_board(board boards[], int id_board){
+int i;
+	for(i=0; i<3; i++){
+		if ((boards[id_board].player =='x' || boards[id_board].player =='o') && (boards[id_board].b[i][0]==boards[id_board].b[i][1] && boards[id_board].b[i][0]==boards[id_board].b[i][2])){
 }
 
 
