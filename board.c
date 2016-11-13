@@ -18,28 +18,31 @@ void win_small_board(board boards[], int id_board){
 	int i;
 
 	for(i=0; i<BOARD_DIM; i++){
+		//line test
 		if ((boards[id_board].b[i][0]=='x' || boards[id_board].b[i][0]=='o') && (boards[id_board].b[i][0]==boards[id_board].b[i][1] && boards[id_board].b[i][0]==boards[id_board].b[i][2])){
 			boards[id_board].player = boards[id_board].b[i][0];
-			printf("the winner is : %c ", boards[id_board].player );
 
+		//column test
 		}else if ((boards[id_board].b[0][i]=='x' || boards[id_board].b[0][i]=='o') && (boards[id_board].b[0][i]==boards[id_board].b[1][i] && boards[id_board].b[0][i]==boards[id_board].b[2][i])){
 			boards[id_board].player = boards[id_board].b[0][i];
-			printf("the winner is : %c ", boards[id_board].player);
+		}
+	}
 
-		}else if ((boards[id_board].b[0][0] != '-') && (boards[id_board].b[0][0] == boards[id_board].b[1][1]) && (boards[id_board].b[0][0] == boards[id_board].b[2][2])){
-			boards[id_board].player = boards[id_board].b[0][0];
-			printf("the winner is : %c ", boards[id_board].player);
+	//diagonal test
+	if ((boards[id_board].b[0][0] != '-') && (boards[id_board].b[0][0] == boards[id_board].b[1][1]) && (boards[id_board].b[0][0] == boards[id_board].b[2][2])){
+		boards[id_board].player = boards[id_board].b[0][0];
 		
-		}else if ((boards[id_board].b[2][0] != '-') && (boards[id_board].b[2][0] == boards[id_board].b[1][1]) && (boards[id_board].b[0][0] == boards[id_board].b[0][2]))
-			boards[id_board].player = boards[id_board].b[2][0];
-			printf("the winner is : %c ", boards[id_board].player);
+	}else if ((boards[id_board].b[2][0] != '-') && (boards[id_board].b[2][0] == boards[id_board].b[1][1]) && (boards[id_board].b[0][0] == boards[id_board].b[0][2])){
+		boards[id_board].player = boards[id_board].b[2][0];
 	}
 }
 
 void win_big_board(board boards[], int id_board){
-int i;
+	int i;
 	for(i=0; i<3; i++){
 		if ((boards[id_board].player =='x' || boards[id_board].player =='o') && (boards[id_board].b[i][0]==boards[id_board].b[i][1] && boards[id_board].b[i][0]==boards[id_board].b[i][2])){
+		}
+	}
 }
 
 
@@ -54,4 +57,5 @@ void display_board(board boards[], int size){
 		cpt+=BOARD_DIM;
 		printf("\n");
 	}
+	printf("--------------------------- \n");
 }
