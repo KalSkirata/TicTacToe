@@ -5,7 +5,7 @@
 
 struct board{
 	char b[BOARD_DIM][BOARD_DIM];
-	char player;
+	char winner;
 };
 
 typedef struct board board;
@@ -14,5 +14,7 @@ typedef struct board board;
 void init_board(board boards[], int size);
 
 void display_board(board boards[], int size);
+
+int state(board boards[]);
 
 #endif

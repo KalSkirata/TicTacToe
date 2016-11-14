@@ -14,35 +14,55 @@ void init_board(board boards[], int size){
 	}
 }
 
-void win_small_board(board boards[], int id_board){
+void win_small_board(board boards[], int id){
 	int i;
 
 	for(i=0; i<BOARD_DIM; i++){
 		//line test
-		if ((boards[id_board].b[i][0]=='x' || boards[id_board].b[i][0]=='o') && (boards[id_board].b[i][0]==boards[id_board].b[i][1] && boards[id_board].b[i][0]==boards[id_board].b[i][2])){
-			boards[id_board].player = boards[id_board].b[i][0];
+		if ((boards[id].b[i][0]=='x' || boards[id].b[i][0]=='o') && (boards[id].b[i][0]==boards[id].b[i][1] && boards[id].b[i][0]==boards[id].b[i][2])){
+			boards[id].winner = boards[id].b[i][0];
+			return;
 
 		//column test
-		}else if ((boards[id_board].b[0][i]=='x' || boards[id_board].b[0][i]=='o') && (boards[id_board].b[0][i]==boards[id_board].b[1][i] && boards[id_board].b[0][i]==boards[id_board].b[2][i])){
-			boards[id_board].player = boards[id_board].b[0][i];
+		}else if ((boards[id].b[0][i]=='x' || boards[id].b[0][i]=='o') && (boards[id].b[0][i]==boards[id].b[1][i] && boards[id].b[0][i]==boards[id].b[2][i])){
+			boards[id].winner = boards[id].b[0][i];
+			return;
 		}
 	}
 
 	//diagonal test
-	if ((boards[id_board].b[0][0] != '-') && (boards[id_board].b[0][0] == boards[id_board].b[1][1]) && (boards[id_board].b[0][0] == boards[id_board].b[2][2])){
-		boards[id_board].player = boards[id_board].b[0][0];
+	if ((boards[id].b[0][0] != '-') && (boards[id].b[0][0] == boards[id].b[1][1]) && (boards[id].b[0][0] == boards[id].b[2][2])){
+		boards[id].winner = boards[id].b[0][0];
 		
-	}else if ((boards[id_board].b[2][0] != '-') && (boards[id_board].b[2][0] == boards[id_board].b[1][1]) && (boards[id_board].b[0][0] == boards[id_board].b[0][2])){
-		boards[id_board].player = boards[id_board].b[2][0];
+	}else if ((boards[id].b[2][0] != '-') && (boards[id].b[2][0] == boards[id].b[1][1]) && (boards[id].b[0][0] == boards[id].b[0][2])){
+		boards[id].winner = boards[id].b[2][0];
 	}
 }
 
-void win_big_board(board boards[], int id_board){
-	int i;
-	for(i=0; i<3; i++){
-		if ((boards[id_board].player =='x' || boards[id_board].player =='o') && (boards[id_board].b[i][0]==boards[id_board].b[i][1] && boards[id_board].b[i][0]==boards[id_board].b[i][2])){
-		}
+/*
+	return the state of the board
+	-1 : no winner, keep going
+	0 : draw
+	1 : player 1 win
+	2 : player 2 win
+*/
+int state(board boards[]){
+	int i,j,increment;
+	for(i=0; i<BOARD_DIM*BOARD_DIM; i++){
+		win_small_board(boards, i);
 	}
+
+	/*i=0;
+	for(j=0; j<2; i++){
+		if(j==0){increment=BOARD_DIM;}else{increment=1;}
+		while((i<BOARD_DIM*BOARD_DIM && j==0) || ((i<3 && j==1))){
+			if ((boards[i].winner =='x' || boards[i].winner =='o') && (boards[i].winner==boards[i+1].winner && boards[i].winner==boards[i+2].winner)){
+				if(boards[i].winner=='x'){return 0;}else{return 1;} //TODO improve
+			}
+			i+=increment;
+		}
+	}*/
+	return -1;
 }
 
 
