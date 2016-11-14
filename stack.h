@@ -10,3 +10,5 @@ int push(stack **s, int x, int y);
 void clear(stack **s);
 
 void display(stack *s);
+
+int length(stack *s);

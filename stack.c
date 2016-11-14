@@ -28,3 +28,14 @@ void display(stack *s){
 		s = s->prec;
 	}
 }
+
+int length(stack *s)
+{
+        int n=0;
+        while(s)
+          {
+              n++;
+              s = s->prec;
+          }
+        return n;
+}
