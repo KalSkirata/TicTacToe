@@ -7,6 +7,8 @@ typedef struct stack stack;
 
 int push(stack **s, int x, int y);
 
+int* pop(stack **s);
+
 void clear(stack **s);
 
 void display(stack *s);

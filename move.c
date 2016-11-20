@@ -1,3 +1,4 @@
+#include<stdio.h>
 #include<stdlib.h>
 #include"move.h"
 
@@ -10,6 +11,7 @@ int move_available(move previous_move, board boards[], int size){
 
 	//define board to play
 	board_id = id[previous_move.x][previous_move.y];
+	printf("board_id=%d pm.x=%d pm.y=%d \n", board_id, previous_move.x, previous_move.y);
 	//search the empty cells
 	for(x=0; x<BOARD_DIM; x++){
 		for(y=0; y<BOARD_DIM; y++){
@@ -21,7 +23,7 @@ int move_available(move previous_move, board boards[], int size){
 	}
 	display(available);
 	//clear(&move_available);
-	return length(available);
+	return board_id;
 }
 
 void play(board boards[], move m){

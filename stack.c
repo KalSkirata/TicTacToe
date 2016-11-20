@@ -12,6 +12,20 @@ int push(stack **s, int x, int y){
         return 0;
 }
 
+int* pop(stack **s)
+{
+        int data[2]={-1,-1};
+        stack *tmp;
+        if(!*s) return data;     /* Retourne -1 si la pile est vide. */
+        tmp = (*s)->prec;
+        data[0] = (*s)->x;
+        data[1] = (*s)->x;
+        printf("pop(%d %d) \n", data[0], data[1]);
+        free(*s);
+        *s = tmp;       /* Le pointeur pointe sur le dernier élément. */
+        return data;     /* Retourne la valeur soutirée de la pile. */
+}
+
 void clear(stack **s){
         stack *tmp;
         while(*s)
