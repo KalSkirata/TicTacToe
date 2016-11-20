@@ -47,21 +47,28 @@ void win_small_board(board boards[], int id){
 	2 : player 2 win
 */
 int state(board boards[]){
-	int i,j,increment;
+	int i;
 	for(i=0; i<BOARD_DIM*BOARD_DIM; i++){
 		win_small_board(boards, i);
 	}
 
-	/*i=0;
-	for(j=0; j<2; i++){
-		if(j==0){increment=BOARD_DIM;}else{increment=1;}
-		while((i<BOARD_DIM*BOARD_DIM && j==0) || ((i<3 && j==1))){
-			if ((boards[i].winner =='x' || boards[i].winner =='o') && (boards[i].winner==boards[i+1].winner && boards[i].winner==boards[i+2].winner)){
-				if(boards[i].winner=='x'){return 0;}else{return 1;} //TODO improve
-			}
-			i+=increment;
+	//left to right diagonal
+	if((boards[0].winner=='x' || boards[0].winner=='o') && boards[0].winner==boards[4].winner && boards[0].winner==boards[8].winner){
+		return 1;
+	//right to left diagonal
+	}else if((boards[2].winner=='x' || boards[2].winner=='o') && boards[2].winner==boards[4].winner && boards[2].winner==boards[6].winner){
+		return 1;
+	}
+
+	for(i=0; i<BOARD_DIM; i++){
+		//vertical test
+		if((boards[i].winner=='x' || boards[i].winner=='o') && boards[i].winner==boards[i+3].winner && boards[i].winner==boards[i+6].winner){
+			return 1;
+		//horizontal test
+		}else if((boards[i*BOARD_DIM].winner=='x' || boards[i*BOARD_DIM].winner=='o') && boards[i*BOARD_DIM].winner==boards[i*BOARD_DIM+1].winner && boards[i*BOARD_DIM].winner==boards[i*BOARD_DIM+2].winner){
+			return 1;
 		}
-	}*/
+	}
 	return -1;
 }
 
