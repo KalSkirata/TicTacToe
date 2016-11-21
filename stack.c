@@ -19,7 +19,7 @@ int* pop(stack **s)
         if(!*s) return data;     /* Retourne -1 si la pile est vide. */
         tmp = (*s)->prec;
         data[0] = (*s)->x;
-        data[1] = (*s)->x;
+        data[1] = (*s)->y;
         printf("pop(%d %d) \n", data[0], data[1]);
         free(*s);
         *s = tmp;       /* Le pointeur pointe sur le dernier élément. */
