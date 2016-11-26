@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include"move.h"
 
-int id[3][3] = {{0,1,2},{3,4,5},{6,7,8}}; //id for each cell of board
+int map_id[3][3] = {{0,1,2},{3,4,5},{6,7,8}}; //id for each cell of board
 
 int move_available(move previous_move, board boards[], int size){
 	int board_id, x, y, cpt=0,i;
@@ -10,7 +10,7 @@ int move_available(move previous_move, board boards[], int size){
 	available = NULL;
 
 	//define board to play
-	board_id = id[previous_move.x][previous_move.y];
+	board_id = map_id[previous_move.x][previous_move.y];
 	printf("board_id=%d pm.x=%d pm.y=%d \n", board_id, previous_move.x, previous_move.y);
 	if(boards[board_id].winner=='x' || boards[board_id].winner=='o'){
 		for(i=0; i<9; i++){ //parcours tous les plateaux

@@ -9,6 +9,8 @@
 board boards[BOARDS_NB];
 move previous_move;
 
+int map[3][3] = {{0,1,2},{3,4,5},{6,7,8}}; //id for each cell of board
+
 void ia_move(){
 	int* move;
 	previous_move.board_id=move_available(previous_move, boards, BOARDS_NB);
@@ -21,9 +23,32 @@ void ia_move(){
 }
 
 void human_move(){
-	printf("move to play:");
-	scanf("%d %d %d", &previous_move.board_id, &previous_move.x, &previous_move.y);
+	int i,x,y;
+	while(1){
+		printf("move to play:");
+		scanf("%d %d %d", &i, &x, &y);
+		if(boards[i].winner=='x' || boards[i].winner=='o'){
+			if(boards[i].b[x][y]!='-'){
+				printf("This cell is already set \n");
+			}else{
+				break;
+			}
+		}else{
+			if(map[previous_move.x][previous_move.y]!=i){
+				printf("You can only play in board %d \n", map[previous_move.x][previous_move.y]);
+			}else{
+				if(boards[i].b[x][y]!='-'){
+					printf("This cell is already set \n");
+				}else{
+					break;
+				}
+			}
+		}
+	}
 	previous_move.player='o';
+	previous_move.x=x;
+	previous_move.y=y;
+	previous_move.board_id=i;
 	printf("Human play : id=%d x=%d y=%d \n", previous_move.board_id, previous_move.x, previous_move.y);
 	play(boards, previous_move);
 }
