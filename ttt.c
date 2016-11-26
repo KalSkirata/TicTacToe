@@ -27,21 +27,21 @@ void human_move(){
 	while(1){
 		printf("move to play:");
 		scanf("%d %d %d", &i, &x, &y);
-		if(boards[i].winner=='x' || boards[i].winner=='o'){
-			if(boards[i].b[x][y]!='-'){
-				printf("This cell is already set \n");
-			}else{
-				break;
-			}
-		}else{
-			if(map[previous_move.x][previous_move.y]!=i){
-				printf("You can only play in board %d \n", map[previous_move.x][previous_move.y]);
-			}else{
+		if(map[previous_move.x][previous_move.y]!=i){
+			if(boards[map[previous_move.x][previous_move.y]].winner=='x' || boards[map[previous_move.x][previous_move.y]].winner=='o'){
 				if(boards[i].b[x][y]!='-'){
 					printf("This cell is already set \n");
 				}else{
 					break;
 				}
+			}else{
+				printf("You can only play in board %d \n", map[previous_move.x][previous_move.y]);
+			}
+		}else{
+			if(boards[i].b[x][y]!='-'){
+				printf("This cell is already set \n");
+			}else{
+				break;
 			}
 		}
 	}
