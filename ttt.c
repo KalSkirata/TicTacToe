@@ -29,19 +29,28 @@ void human_move(){
 		scanf("%d %d %d", &i, &x, &y);
 		if(map[previous_move.x][previous_move.y]!=i){
 			if(boards[map[previous_move.x][previous_move.y]].winner=='x' || boards[map[previous_move.x][previous_move.y]].winner=='o'){
-				if(boards[i].b[x][y]!='-'){
-					printf("This cell is already set \n");
+				if(boards[i].winner=='x' || boards[i].winner=='o'){
+					printf("Board %d already won \n",i);
 				}else{
-					break;
+					printf("no winner in board %d \n",i);
+					if(boards[i].b[x][y]!='-'){
+						printf("This cell is already set \n");
+					}else{
+						break;
+					}
 				}
 			}else{
 				printf("You can only play in board %d \n", map[previous_move.x][previous_move.y]);
 			}
 		}else{
-			if(boards[i].b[x][y]!='-'){
-				printf("This cell is already set \n");
+			if(boards[map[previous_move.x][previous_move.y]].winner=='x' || boards[map[previous_move.x][previous_move.y]].winner=='o'){
+				printf("You can't play in a board already won \n");
 			}else{
-				break;
+				if(boards[i].b[x][y]!='-'){
+					printf("This cell is already set \n");
+				}else{
+					break;
+				}
 			}
 		}
 	}
@@ -66,7 +75,7 @@ int main(){
 	while(state(boards)==-1){
 		human_move();
 		display_board(boards, BOARDS_NB);
-		state(boards);
+		if(state(boards)>-1) break;
 		ia_move();
 		display_board(boards, BOARDS_NB);
 	}
