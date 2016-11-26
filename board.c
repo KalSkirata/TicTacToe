@@ -33,9 +33,11 @@ void win_small_board(board boards[], int id){
 	//diagonal test
 	if ((boards[id].b[0][0] != '-') && (boards[id].b[0][0] == boards[id].b[1][1]) && (boards[id].b[0][0] == boards[id].b[2][2])){
 		boards[id].winner = boards[id].b[0][0];
+		return;
 		
-	}else if ((boards[id].b[2][0] != '-') && (boards[id].b[2][0] == boards[id].b[1][1]) && (boards[id].b[0][0] == boards[id].b[0][2])){
+	}else if ((boards[id].b[2][0] != '-') && (boards[id].b[2][0] == boards[id].b[1][1]) && (boards[id].b[2][0] == boards[id].b[0][2])){
 		boards[id].winner = boards[id].b[2][0];
+		return;
 	}
 }
 

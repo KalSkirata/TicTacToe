@@ -66,6 +66,7 @@ int main(){
 	while(state(boards)==-1){
 		human_move();
 		display_board(boards, BOARDS_NB);
+		state(boards);
 		ia_move();
 		display_board(boards, BOARDS_NB);
 	}
