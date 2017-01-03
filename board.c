@@ -42,7 +42,7 @@ void win_small_board(board boards[], int id){
 }
 
 /*
-	return the state of the board
+	return the state of the entire board
 	-1 : no winner, keep going
 	0 : draw
 	1 : player 1 win

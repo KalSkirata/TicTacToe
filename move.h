@@ -12,6 +12,10 @@ stack *available;
 
 void play(board boards[], move m);
 
-int unplay(move m); //TODO
+void unplay(board boards[], move m);
 
-int move_available(move previous_move, board boards[], int size);
+int move_available(board boards[], int size);
+
+void dumb_ia(board boards[], int BOARD_NB);
+
+void human_move(board boards[], int BOARDS_NB);

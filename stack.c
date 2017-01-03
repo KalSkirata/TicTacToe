@@ -2,6 +2,10 @@
 #include<stdlib.h>
 #include "stack.h"
 
+/**
+* Stack use to store the availables moves
+**/
+
 int push(stack **s, int x, int y){
         stack *element = malloc(sizeof(s));
         if(!element) return -1;     /* Si l'allocation a échouée. */
