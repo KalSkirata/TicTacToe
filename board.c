@@ -88,3 +88,14 @@ void display_board(board boards[], int size){
 	}
 	printf("--------------------------- \n");
 }
+
+void copyBoard(board src[], board dst[], int size){
+	int i, x, y;
+	for(i=0; i<size; i++){
+		for(x=0; x<BOARD_DIM; x++){
+			for(x=0; x<BOARD_DIM; x++){
+				dst[i].b[x][y]=src[i].b[x][y];
+			}
+		}
+	} 
+}

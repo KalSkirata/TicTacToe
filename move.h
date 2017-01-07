@@ -19,3 +19,7 @@ int move_available(board boards[], int size);
 void dumb_ia(board boards[], int BOARD_NB);
 
 void human_move(board boards[], int BOARDS_NB);
+
+void mc_player(board boards[], int size, int nbPlayout);
+
+void display_move(move m);

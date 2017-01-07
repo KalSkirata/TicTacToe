@@ -14,3 +14,7 @@ void clear(stack **s);
 void display(stack *s);
 
 int length(stack *s);
+
+int* popById(int id, stack **s);
+
+void copyStack(stack* src, stack *dst, int size);

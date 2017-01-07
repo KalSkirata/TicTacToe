@@ -16,15 +16,14 @@ int push(stack **s, int x, int y){
         return 0;
 }
 
-int* pop(stack **s)
-{
+int* pop(stack **s){
         int data[2]={-1,-1};
         stack *tmp;
         if(!*s) return data;     /* Retourne -1 si la pile est vide. */
         tmp = (*s)->prec;
         data[0] = (*s)->x;
         data[1] = (*s)->y;
-        printf("pop(%d %d) \n", data[0], data[1]);
+        //printf("pop(%d %d) \n", data[0], data[1]);
         free(*s);
         *s = tmp;       /* Le pointeur pointe sur le dernier élément. */
         return data;     /* Retourne la valeur soutirée de la pile. */
@@ -32,12 +31,11 @@ int* pop(stack **s)
 
 void clear(stack **s){
         stack *tmp;
-        while(*s)
-          {
+        while(*s){
              tmp = (*s)->prec;
              free(*s);
              *s = tmp;
-          }
+        }
 }
 
 void display(stack *s){
@@ -47,13 +45,29 @@ void display(stack *s){
 	}
 }
 
-int length(stack *s)
-{
+int length(stack *s){
         int n=0;
-        while(s)
-          {
+        while(s){
               n++;
               s = s->prec;
-          }
+        }
         return n;
+}
+
+int* popById(int id, stack **s){
+	int i, *res;
+	//printf("%s : length(*s)-id=%d \n", __func__, length(*s)-id);
+	for(i=0; i<length(*s)-id; i++){
+		//printf("%s : i = %d \n", __func__, i);
+		res=pop(s);			
+	}
+	return res;
+}
+
+void copyStack(stack* src, stack *dst, int size){
+	int i, *data;
+	for(i=0; i<size; i++){
+		data = pop(src);
+		push(&dst, *(data), *(data+1));
+	}
 }

@@ -24,7 +24,8 @@ int main(){
 		human_move(boards, BOARDS_NB);
 		display_board(boards, BOARDS_NB);
 		if(state(boards)>-1) break;
-		dumb_ia(boards, BOARDS_NB);
+		//dumb_ia(boards, BOARDS_NB);
+		mc_player(boards, BOARDS_NB, 5);
 		display_board(boards, BOARDS_NB);
 	}
 	return 0;
