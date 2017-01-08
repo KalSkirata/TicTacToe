@@ -67,7 +67,7 @@ int* popById(int id, stack **s){
 void copyStack(stack* src, stack *dst, int size){
 	int i, *data;
 	for(i=0; i<size; i++){
-		data = pop(src);
+		data = pop(&src);
 		push(&dst, *(data), *(data+1));
 	}
 }

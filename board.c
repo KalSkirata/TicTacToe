@@ -74,7 +74,6 @@ int state(board boards[]){
 	return -1;
 }
 
-
 void display_board(board boards[], int size){
 	int i, cpt=0;
 	while(cpt<size){
@@ -93,7 +92,7 @@ void copyBoard(board src[], board dst[], int size){
 	int i, x, y;
 	for(i=0; i<size; i++){
 		for(x=0; x<BOARD_DIM; x++){
-			for(x=0; x<BOARD_DIM; x++){
+			for(y=0; y<BOARD_DIM; y++){
 				dst[i].b[x][y]=src[i].b[x][y];
 			}
 		}
