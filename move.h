@@ -10,7 +10,7 @@ typedef struct move move;
 
 stack *available;
 
-void play(board boards[], move m);
+void play(board boards[], move m, int save);
 
 void unplay(board boards[], move m);
 
@@ -23,3 +23,5 @@ void human_move(board boards[], int BOARDS_NB);
 void mc_player(board boards[], int size, int nbPlayout);
 
 void display_move(move m);
+
+void copy_move(move src, move dst);

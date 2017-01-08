@@ -11,7 +11,7 @@ int* pop(stack **s);
 
 void clear(stack **s);
 
-void display(stack *s);
+void display_stack(stack *s);
 
 int length(stack *s);
 

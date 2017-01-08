@@ -38,7 +38,7 @@ void clear(stack **s){
         }
 }
 
-void display(stack *s){
+void display_stack(stack *s){
 	while(s){
 		printf("%d %d\n",s->x,s->y);
 		s = s->prec;
@@ -65,9 +65,13 @@ int* popById(int id, stack **s){
 }
 
 void copyStack(stack* src, stack *dst, int size){
-	int i, *data;
+	int i, *data, x, y;
+	printf("%s: size=%d\n", __func__, size);
 	for(i=0; i<size; i++){
 		data = pop(&src);
-		push(&dst, *(data), *(data+1));
+		x = *(data);
+		y = *(data+1);
+		printf("%s : x=%d y=%d push=%d\n", __func__, x, y, push(&dst, x, y));
+		//push(&dst, x, y);
 	}
 }

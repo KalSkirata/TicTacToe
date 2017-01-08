@@ -18,7 +18,7 @@ int main(){
 	m.board_id=4;
 	m.player='x';
 	printf("IA play : id=%d x=%d y=%d \n", m.board_id, m.x, m.y);
-	play(boards, m);
+	play(boards, m, 1);
 	display_board(boards, BOARDS_NB);
 	while(state(boards)==-1){
 		human_move(boards, BOARDS_NB);
