@@ -101,43 +101,35 @@ void human_move(board boards[], int BOARDS_NB){
 }
 
 int mc_playout(board boards[], int size){
-	int score;
+	int score, r;
 	int *moveAvailable;
-	move moveToPlay; // p;
+	move moveToPlay;
 	moveToPlay.player='x';
 	
-	printf("%s : previous : ", __func__);
-	display_move(previous_move);
-	//copy_move(previous_move, p);
-	
-	//copy of actual board and its list of move available
+	//copy of actual board
 	board *board_copy = malloc(size*sizeof(board));
 	copyBoard(boards, board_copy, size);
-	
-	//stack *available_copy = NULL;
-	//copyStack(available, available_copy, length(available));
-	//printf("%s %d \n", __func__, __LINE__);
+
 	srand(time(NULL));
 	while((score=state(board_copy))==-1){
 		//generate list of move available
 		moveToPlay.board_id=move_available(board_copy, size);
 		//pick one random move in this list
-		//printf("%s : length(available_copy)=%d stack=\n", __func__,length(available));
-		//display_stack(available_copy);
-		moveAvailable=popById(rand()%length(available), &available);
+		r = rand()%length(available);
+		printf("%s : r=%d \n", __func__, r);
+		moveAvailable=popById(r, &available);
 		moveToPlay.x=*(moveAvailable);
 		moveToPlay.y=*(moveAvailable+1);
+		printf("%s : moveToPlay.x=%d moveToPlay.y=%d \n", __func__, moveToPlay.x, moveToPlay.y);
 		//play the random move
 		play(board_copy, moveToPlay,1);
 	}
 	free(board_copy);
-	//free(available_copy);
-	//copy_move(p, previous_move);
 	return score;
 }
 
 void mc_player(board boards[], int size, int nbPlayout){
-	int score[size], i, *data, max;
+	int score[nbPlayout], i, *data, max, r, moves[nbPlayout][nbPlayout];
 	move m,p;
 	
 	m.board_id=move_available(boards, size);
@@ -149,28 +141,35 @@ void mc_player(board boards[], int size, int nbPlayout){
 	
 	srand(time(NULL));
 	for(i=0; i<nbPlayout; i++){
-		data=popById(rand()%length(available), &available);
+		display_stack(available);
+		r = rand()%length(available);
+		printf("%s : rand=%d length=%d\n", __func__,r,length(available));
+		data=popById(r, &available);
 		m.x=*(data);
 		m.y=*(data+1);
+		//store move played to use it later while the comparaison of score
+		moves[i][0]=m.x;
+		moves[i][1]=m.y;
 		//printf("%s : m.id=%d m.player=%c m.x=%d m.y=%d \n", __func__, m.board_id, m.player, m.x, m.y);
 		play(boards,m,0);
 		score[i]=mc_playout(boards, size);
 		//printf("%s : score[%d]=%d \n", __func__, i, score[i]);
 		unplay(boards,m);
-		copy_move(p, previous_move);
+		copy_move(p, previous_move); //restore previous_move value
 		move_available(boards, size); //rebuild list of available moves because popById destroy a part of it
 	}
 	
 	copy_move(p, previous_move); //restore value of previous_move
 	
 	max=0;
-	for(i=0; i<size; i++){
+	for(i=0; i<nbPlayout; i++){
+		//printf("%s : score[%d]=%d \n", __func__, i, score[i]);
 		if(score[i]>max) max = i;
 	}
 	
-	data = popById(max, &available);
-	m.x=*(data);
-	m.y=*(data+1);
+	//data = popById(max, &available);
+	m.x=moves[max][0];
+	m.y=moves[max][1];
 	printf("\n%s : previous_move=",__func__);
 	display_move(previous_move);
 	printf("\n%s : move=",__func__);

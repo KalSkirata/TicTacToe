@@ -25,7 +25,7 @@ int main(){
 		display_board(boards, BOARDS_NB);
 		if(state(boards)>-1) break;
 		//dumb_ia(boards, BOARDS_NB);
-		mc_player(boards, BOARDS_NB, 5);
+		mc_player(boards, BOARDS_NB, 50);
 		display_board(boards, BOARDS_NB);
 	}
 	return 0;
