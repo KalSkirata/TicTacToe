@@ -10,7 +10,6 @@ struct board{
 
 typedef struct board board;
 
-// fill board with "-" character
 void init_board(board boards[], int size);
 
 void display_board(board boards[], int size);

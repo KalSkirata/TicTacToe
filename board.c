@@ -1,7 +1,9 @@
 #include<stdio.h>
 #include<board.h>
 
-// fill board with "-" character
+/**
+	fill board with "-" character
+**/
 void init_board(board boards[], int size){
 	int x=0, y=0, z=0;
 
@@ -14,6 +16,10 @@ void init_board(board boards[], int size){
 	}
 }
 
+/**
+	Check the state for only one board
+	If a winner is found, the variable board[id].winner is set with the symbol of the winner
+**/
 void win_small_board(board boards[], int id){
 	int i;
 
@@ -41,13 +47,13 @@ void win_small_board(board boards[], int id){
 	}
 }
 
-/*
+/**
 	return the state of the entire board
 	-1 : no winner, keep going
 	0 : draw
 	1 : player 1 win
 	2 : player 2 win
-*/
+**/
 int state(board boards[]){
 	int i;
 	for(i=0; i<BOARD_DIM*BOARD_DIM; i++){
@@ -74,6 +80,9 @@ int state(board boards[]){
 	return -1;
 }
 
+/**
+	Print in the terminal the parameters boards
+**/
 void display_board(board boards[], int size){
 	int i, cpt=0;
 	while(cpt<size){
@@ -88,6 +97,9 @@ void display_board(board boards[], int size){
 	printf("--------------------------- \n");
 }
 
+/**
+	Copy board source into board destination
+**/
 void copyBoard(board src[], board dst[], int size){
 	int i, x, y;
 	for(i=0; i<size; i++){

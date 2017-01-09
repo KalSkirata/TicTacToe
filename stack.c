@@ -6,6 +6,9 @@
 * Stack use to store the availables moves
 **/
 
+/**
+	Add the x,y coordinates into the stack s
+**/
 int push(stack **s, int x, int y){
         stack *element = malloc(sizeof(s));
         if(!element) return -1;     /* Si l'allocation a échouée. */
@@ -16,6 +19,9 @@ int push(stack **s, int x, int y){
         return 0;
 }
 
+/**
+	Get and remove the last element of stack
+**/
 int* pop(stack **s){
         int data[2]={-1,-1};
         stack *tmp;
@@ -54,24 +60,12 @@ int length(stack *s){
         return n;
 }
 
+/**
+	Get coordinates in the stack s by their id
+**/
 int* popById(int id, stack **s){
 	int i, *res;
-	//printf("%s : length(*s)-id=%d \n", __func__, length(*s)-id);
-	for(i=0; i<length(*s)-id; i++){
-		//printf("%s : i = %d \n", __func__, i);
-		res=pop(s);			
-	}
+	for(i=0; i<length(*s)-id; i++)
+		res=pop(s);
 	return res;
-}
-
-void copyStack(stack* src, stack *dst, int size){
-	int i, *data, x, y;
-	printf("%s: size=%d\n", __func__, size);
-	for(i=0; i<size; i++){
-		data = pop(&src);
-		x = *(data);
-		y = *(data+1);
-		printf("%s : x=%d y=%d push=%d\n", __func__, x, y, push(&dst, x, y));
-		//push(&dst, x, y);
-	}
 }
